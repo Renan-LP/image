@@ -1,28 +1,29 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "stunnel"
+  name: "site-bleu"
   namespace: "default"
   labels:
-    env: "stunnel"
+    env: "back"
     app: "web"
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      env: "stunnel"
+      env: "back"
       app: "web"
   template:
     metadata:
       labels:
-        env: "stunnel"
+        env: "back"
         app: "web"
     spec:
       containers:
-      - name: stunnel
-        image: eu.gcr.io/gke-discovery-03/stunnel:v1
+      - name: site-bleu-v1
+        image: eu.gcr.io/gke-discovery-03/bleu:v1
         ports:
         - containerPort: 80
+
 
 #        livenessProbe:
 #          initialDelaySeconds: 10
